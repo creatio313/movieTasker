@@ -6,6 +6,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //AngularMaterialテストのために付加
 import { MatSliderModule } from '@angular/material/slider';
+//Angularfireのテストのために付加
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -15,9 +19,11 @@ import { MatSliderModule } from '@angular/material/slider';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatSliderModule//AngularMaterialテストのために付加
+    MatSliderModule,//AngularMaterialテストのために付加
+    AngularFireModule.initializeApp(environment.firebase),//Angularfireのテストのために付加
+    AngularFirestoreModule // imports firebase/firestore, only needed for database features
   ],
-  providers: [],
+  providers: [AppComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
