@@ -11,6 +11,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 
+import { StoreService } from './services/store.service'
+
 @NgModule({
   declarations: [
     AppComponent
@@ -23,7 +25,7 @@ import { environment } from '../environments/environment';
     AngularFireModule.initializeApp(environment.firebase),//Angularfireのテストのために付加
     AngularFirestoreModule // imports firebase/firestore, only needed for database features
   ],
-  providers: [AppComponent],
+  providers: [StoreService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

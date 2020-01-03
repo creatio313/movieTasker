@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 
 //angularfireテスト用
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-//import { project } from './project';
 
-export class project{
+import { User } from './models/user';
+import { StoreService } from './services/store.service'
+
+class project{
   ProjectName: String;
   owner: String;
 }
@@ -16,13 +17,19 @@ export class project{
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  projectCollection : AngularFirestoreCollection<project>;
-  docs: Observable<project[]>
-  constructor(private db: AngularFirestore) {
+  
+  userID: String = "creatio313";
+
+  user: User;
+  data: Number = 20;
+  
+
+  title = 'movieTasker';
+
+  constructor(private store:StoreService) {
   }
   ngOnInit(){
-    this.projectCollection = this.db.collection('Projects');
-    this.docs = this.projectCollection.valueChanges();
+    this.store.getUser().subscribe(user => this.user = user);
   }
-  title = 'movieTasker';
+
 }
