@@ -1,16 +1,49 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<mat-slider min="1" max="100" step="1" [(value)]="data"></mat-slider>
-<p>{{data}}</p>
-<p>{{user?.name}}</p>
-<div *ngIf="user?.projects">
-  <ul *ngFor= "let pro of user.projects | keyvalue">
-    <p>{{pro.key}}</p>
-  </ul>
-</div>
+
+<mat-sidenav-container class="sidenav">
+  <!--サイドナビゲーション-->
+  <mat-sidenav #sidenav mode="side" opened>
+    <mat-form-field>
+      <mat-label>プロジェクト</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let project of user?.projects | keyvalue" [value]="project.key">
+          {{project.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-nav-list class="processbutton">
+      <mat-list-item>構成</mat-list-item>
+      <mat-list-item>脚本</mat-list-item>
+      <mat-list-item>絵コンテ</mat-list-item>
+      <mat-list-item>ロケハン・交渉</mat-list-item>
+      <mat-list-item>日時計画</mat-list-item>
+      <mat-list-item>撮影</mat-list-item>
+      <mat-list-item>編集</mat-list-item>
+      <mat-list-item>音楽</mat-list-item>
+      <mat-list-item>アフレコ</mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <!--メインナビゲーション-->
+  <mat-sidenav-content>
+    <button (click)="sidenav.toggle()" mat-fab aria-label="menu toggle button">
+      <mat-icon>list</mat-icon>
+    </button>
+    <div style="text-align:center">
+    <h1>
+      {{ title }}
+    </h1>
+    <!--
+    <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+    -->
+    </div>
+    <mat-slider min="1" max="100" step="1" [(value)]="data"></mat-slider>
+    <p>{{data}}</p>
+    <p>{{user?.name}}</p>
+    <div *ngIf="user?.projects">
+      <ul *ngFor= "let pro of user.projects | keyvalue">
+        <p>{{pro.key}}</p>
+      </ul>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 <router-outlet></router-outlet>

@@ -6,12 +6,18 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //AngularMaterialテストのために付加
 import { MatSliderModule } from '@angular/material/slider';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
 //Angularfireのテストのために付加
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 
-import { StoreService } from './services/store.service'
+import { FormsModule }   from '@angular/forms';
+import { StoreService } from './services/store.service';
 
 @NgModule({
   declarations: [
@@ -22,8 +28,14 @@ import { StoreService } from './services/store.service'
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSliderModule,//AngularMaterialテストのために付加
+    MatSidenavModule,
+    MatButtonModule,
+    MatIconModule,
+    MatListModule,
+    MatSelectModule,
     AngularFireModule.initializeApp(environment.firebase),//Angularfireのテストのために付加
-    AngularFirestoreModule // imports firebase/firestore, only needed for database features
+    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+    FormsModule
   ],
   providers: [StoreService],
   bootstrap: [AppComponent]

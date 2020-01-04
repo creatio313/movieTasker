@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
 
-//angularfireテスト用
-import { Observable } from 'rxjs';
-
 import { User } from './models/user';
 import { StoreService } from './services/store.service'
 
@@ -24,7 +21,7 @@ export class AppComponent {
   data: Number = 20;
   
 
-  title = 'movieTasker';
+  title = 'MovieTasker';
 
   constructor(private store:StoreService) {
   }
