@@ -11,16 +11,8 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-nav-list class="processbutton">
-      <mat-list-item>構成</mat-list-item>
-      <mat-list-item>脚本</mat-list-item>
-      <mat-list-item>絵コンテ</mat-list-item>
-      <mat-list-item>ロケハン・交渉</mat-list-item>
-      <mat-list-item>日時計画</mat-list-item>
-      <mat-list-item>撮影</mat-list-item>
-      <mat-list-item>編集</mat-list-item>
-      <mat-list-item>音楽</mat-list-item>
-      <mat-list-item>アフレコ</mat-list-item>
+    <mat-nav-list class="processbutton" *ngFor="let process of processes">
+      <mat-list-item (click)="pbClick(process.id)">{{ process.name }}</mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
   <!--メインナビゲーション-->
@@ -28,6 +20,10 @@
     <button (click)="sidenav.toggle()" mat-fab aria-label="menu toggle button">
       <mat-icon>list</mat-icon>
     </button>
+    <mat-form-field class="input">
+      <input matInput placeholder="シーン名称" value="" #newSceneName>
+    </mat-form-field>
+    <button (click)="add(newSceneName.value)">add</button>
     <div style="text-align:center">
     <h1>
       {{ title }}

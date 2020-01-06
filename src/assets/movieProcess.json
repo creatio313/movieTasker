@@ -1,0 +1,34 @@
+[
+    {
+        "id": "plan",
+        "name": "企画"
+    },
+    {
+        "id": "script",
+        "name": "脚本"
+    },
+    {
+        "id": "storyboard",
+        "name": "絵コンテ"
+    },
+    {
+        "id": "location",
+        "name": "ロケ準備"
+    },
+    {
+        "id": "schedule",
+        "name": "日時計画"
+    },
+    {
+        "id": "record",
+        "name": "撮影"
+    },
+    {
+        "id": "edit",
+        "name": "編集"
+    },
+    {
+        "id": "sound",
+        "name": "音声・音楽"
+    }
+]
