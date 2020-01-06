@@ -35,9 +35,6 @@ export class AppComponent {
     this.movieProcess.getMovieProcess().subscribe(processes => this.processes = processes);
   }
 
-  pbClick(process: String){
-    console.log(process)
-  }
   add(name: string){
     this.store.addScene(name);
   }

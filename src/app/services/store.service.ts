@@ -27,10 +27,9 @@ export class StoreService {
     this.projectCollection = this.db.collection('Users/creatio313/TestProject');
   }
   addScene(name: string){
-    obj:Object;
     this.mp.getMovieProcess().subscribe(processes => {
       this.db.collection('Users/creatio313/TestProject').doc(name).set(
-        Array.from(processes)
+        processes
         .map(pro => pro.id)
         .reduce<Object>((obj, id) => {
             obj[id] = false;
