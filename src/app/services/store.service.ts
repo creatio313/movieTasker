@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 
 import { User } from '../models/user';
 import { Project } from '../models/project';
+import { Scene } from '../models/scene';
 import { MovieProcessService } from './movie-process.service'
 
 @Injectable({
@@ -34,9 +35,15 @@ export class StoreService {
         .reduce<Object>((obj, id) => {
             obj[id] = false;
             return obj;
-          }, {}
+          }, {name: name}
         )
       )
     })
+  }
+  deleteScene(name: string){
+    this.db.doc(`Users/creatio313/TestProject/${name}`).delete();
+  }
+  getSchene(){
+    return this.db.collection<Scene>('Users/creatio313/TestProject').valueChanges();
   }
 }

@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -39,6 +40,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatListModule,
     MatSelectModule,
     MatInputModule,
+    MatCardModule,
     AngularFireModule.initializeApp(environment.firebase),//Angularfireのテストのために付加
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     FormsModule//要らないかも
