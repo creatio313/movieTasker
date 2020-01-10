@@ -28,6 +28,8 @@ export class StoreService {
     this.projectCollection = this.db.collection('Users/creatio313/TestProject');
   }
   addScene(name: string){
+    name = name.trim();
+    if(name == null || name == "")return;
     this.mp.getMovieProcess().subscribe(processes => {
       this.db.collection('Users/creatio313/TestProject').doc(name).set(
         processes
