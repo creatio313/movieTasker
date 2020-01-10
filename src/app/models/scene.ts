@@ -1,4 +1,5 @@
 export class Scene {
+    name: string;
     plan: boolean;
     script: boolean;
     storyboard: boolean;

@@ -34,12 +34,16 @@ export class AppComponent {
   }
   ngOnInit(){
     this.store.getUser().subscribe(user => this.user = user);
-    this.store.getSchene().subscribe(scenes => this.scenes = scenes);
+    this.store.getScene().subscribe(scenes => this.scenes = scenes);
     this.movieProcess.getMovieProcess().subscribe(processes => this.processes = processes);
   }
 
   add(name: string){
-    this.store.addScene(name);
+    if(!this.scenes.find(scene => scene.name == name)){
+      this.store.addScene(name)
+    }else{
+      console.log("すでに同名のシーンが存在します。");//試験用
+    };
   }
   delete(name: string){
     this.store.deleteScene(name);
