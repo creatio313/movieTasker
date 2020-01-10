@@ -1,27 +1,24 @@
 # MovieTasker
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.0.
+映画制作進捗管理補助ツール
+フロントエンドではAngular、バックエンドではFirebaseを使用。
 
-## Development server
+## 仕様
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+ユーザー認証にはFirebase AuthenticationによるGoogleアカウントログインを用いる。
+映画作品1つを「プロジェクト」、各場面（制作の最小単位）を「シーン」と定義する。
 
-## Code scaffolding
+### プロジェクト
+映画作品1つの進捗情報をまとめる単位として、「プロジェクト」を定義する。
+プロジェクトには複数のシーンを登録することができる。
+プロジェクトの情報を削除すると、子のシーンはすべて削除される。
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+今後実装予定の撮影リマインダ、気象差異警告機能はプロジェクト単位で実装される。
 
-## Build
+### シーン
+シーンはただひとつの親プロジェクトを持つ。
+複数作成することができるが、同名のシーンは作成できない。
+シーンは、構成や撮影、編集などの各工程の進捗情報を持つ。
+シーン作成時の初期値はいずれも「未了」になっている。
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+今後実装予定の進捗率表示では、編集以外の重みは均等とし、編集は他の工程の2倍の重みをもつものとする。
