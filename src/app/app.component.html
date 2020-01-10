@@ -45,7 +45,7 @@
         </mat-nav-list>
         <h3>シーン追加</h3>
         <mat-form-field class="input">
-          <input matInput placeholder="シーン名称" value="" (keyup.enter)="add(newSceneName.value)" #newSceneName>
+          <input matInput placeholder="シーン名称" value="" (keyup.enter)="add(newSceneName.value); newSceneName.value = ''" #newSceneName>
         </mat-form-field>
       </mat-card-content>
     </mat-card>

@@ -6,6 +6,8 @@ import { MovieProcess } from './models/movie-process';
 import { StoreService } from './services/store.service';
 import { MovieProcessService } from './services/movie-process.service';
 
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 class project{
   ProjectName: String;
   owner: String;
@@ -30,11 +32,14 @@ export class AppComponent {
 
   constructor(
     private store:StoreService,
-    private movieProcess:MovieProcessService) {
+    private movieProcess:MovieProcessService,
+    
+    private matSnackBar:MatSnackBar
+    ) {
   }
   ngOnInit(){
     this.store.getUser().subscribe(user => this.user = user);
-    this.store.getScene().subscribe(scenes => this.scenes = scenes);
+    this.store.getScene().subscribe(scenes => this.scenes = scenes.sort((a,b)=> {if(a.name>b.name){return 1}return -1}));
     this.movieProcess.getMovieProcess().subscribe(processes => this.processes = processes);
   }
 
@@ -42,7 +47,7 @@ export class AppComponent {
     if(!this.scenes.find(scene => scene.name == name)){
       this.store.addScene(name)
     }else{
-      console.log("すでに同名のシーンが存在します。");//試験用
+      this.matSnackBar.open("すでに同名のシーンが存在します。","",{duration: 1500});
     };
   }
   delete(name: string){
