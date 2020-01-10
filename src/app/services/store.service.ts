@@ -7,6 +7,7 @@ import { User } from '../models/user';
 import { Project } from '../models/project';
 import { Scene } from '../models/scene';
 import { MovieProcessService } from './movie-process.service'
+import { MovieProcess } from '../models/movie-process';
 
 @Injectable({
   providedIn: 'root'
@@ -29,18 +30,34 @@ export class StoreService {
     this.projectCollection = this.userDoc.collection('TestProject');
   }
   addScene(name: string){
+    let col = this.userDoc.collection<Scene>('TestProject');
+
     name = name.trim();
     if(name == null || name == "")return;
     this.mp.getMovieProcess().subscribe(processes => {
-      this.userDoc.collection('TestProject').doc(this.db.createId()).set(
-        processes
-        .map(pro => pro.id)
-        .reduce<Object>((obj, id) => {
-            obj[id] = false;
-            return obj;
-          }, {name: name}
-        )
+      this.makeEmptyScene(col, processes, name);
+    });
+  }
+  makeEmptyScene(col: AngularFirestoreCollection<Scene>, processes: MovieProcess[], name: string){
+    col.doc(this.db.createId()).set(
+      processes
+      .map(pro => pro.id)
+      .reduce<Object>((obj, id) => {
+          obj[id] = false;
+          return obj;
+        }, {name: name}
       )
+    )
+  }
+  addProject(name: string){
+    name = name.trim();
+    if(name == null || name == "")return;
+    let obj = {};
+    let id = this.db.createId();
+    obj["projects." + id] = name;
+    this.db.doc('Users/creatio313').update(obj);
+    this.mp.getMovieProcess().subscribe(processes => {
+      this.makeEmptyScene(this.userDoc.collection(id), processes, "シーン１");
     })
   }
   /**

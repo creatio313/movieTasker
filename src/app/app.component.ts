@@ -43,4 +43,7 @@ export class AppComponent {
   delete(name: string){
     this.store.deleteScene(name);
   }
+  addProject(name: string){
+    this.store.addProject(name);
+  }
 }
