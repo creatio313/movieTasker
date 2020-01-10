@@ -22,10 +22,12 @@ import { FormsModule }   from '@angular/forms';//要らないかも
 import { StoreService } from './services/store.service';
 import { MovieProcessService } from './services/movie-process.service';
 import { HttpClientModule } from '@angular/common/http';
+import { SideNavComponent } from './components/side-nav/side-nav.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SideNavComponent
   ],
   imports: [
     BrowserModule,

@@ -3,17 +3,7 @@
 <mat-sidenav-container class="sidenav">
   <!--サイドナビゲーション-->
   <mat-sidenav #sidenav mode="side" opened>
-    <mat-form-field>
-      <mat-label>プロジェクト</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let project of user?.projects | keyvalue" [value]="project.key">
-          {{project.value}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-nav-list>
-      <mat-list-item class="processbutton" *ngFor="let process of processes">{{ process.name }}</mat-list-item>
-    </mat-nav-list>
+    <app-side-nav [user]="user"></app-side-nav>
   </mat-sidenav>
   <!--メインナビゲーション-->
   <mat-sidenav-content>
