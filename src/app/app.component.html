@@ -11,8 +11,8 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-nav-list class="processbutton" *ngFor="let process of processes">
-      <mat-list-item>{{ process.name }}</mat-list-item>
+    <mat-nav-list>
+      <mat-list-item class="processbutton" *ngFor="let process of processes">{{ process.name }}</mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
   <!--メインナビゲーション-->
@@ -28,14 +28,6 @@
     <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
     -->
     </div>
-    <mat-slider min="1" max="100" step="1" [(value)]="data"></mat-slider>
-    <p>{{data}}</p>
-    <p>{{user?.name}}</p>
-    <div *ngIf="user?.projects">
-      <ul *ngFor= "let pro of user.projects | keyvalue">
-        <p>{{pro.key}}</p>
-      </ul>
-    </div>
     <mat-card class="card">
       <mat-card-header>
         <mat-card-title>シーン管理</mat-card-title>
@@ -43,8 +35,8 @@
       </mat-card-header>
       <mat-card-content>
         <h3>シーン削除</h3>
-        <mat-nav-list *ngFor="let scene of scenes">
-          <mat-list-item (click)="delete(scene.name)">
+        <mat-nav-list>
+          <mat-list-item *ngFor="let scene of scenes" (click)="delete(scene.name)">
             <!--<button mat-icon-button class="deleteButton" color="primary" aria-label="delete" (click)="delete(scene.name)">-->
             <mat-icon color="primary" aria-label="delete">backspace</mat-icon>
             <!--</button>-->
