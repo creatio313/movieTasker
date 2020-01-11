@@ -29,25 +29,7 @@ export class StoreService {
   getProject(proj: string){
     this.projectCollection = this.userDoc.collection(proj);
   }
-  addScene(proj: string,name: string){
-    let col = this.userDoc.collection<Scene>(proj);
-    name = name.trim();
-    if(name == null || name == "")return;
-    this.mp.getMovieProcess().subscribe(processes => {
-      this.makeEmptyScene(col, processes, name);
-    });
-  }
-  makeEmptyScene(col: AngularFirestoreCollection<Scene>, processes: MovieProcess[], name: string){
-    col.doc(this.db.createId()).set(
-      processes
-      .map(pro => pro.id)
-      .reduce<Object>((obj, id) => {
-          obj[id] = false;
-          return obj;
-        }, {name: name}
-      )
-    )
-  }
+
   addProject(name: string){
     name = name.trim();
     if(name == null || name == "")return;
@@ -74,16 +56,33 @@ export class StoreService {
     )
   }
   /**
+   * プロジェクトにシーンを追加する。
+   * @param proj プロジェクトID
+   * @param name シーン名称
+   */
+  addScene(proj: string,name: string){
+    let col = this.userDoc.collection<Scene>(proj);
+    name = name.trim();
+    if(name == null || name == "")return;
+    this.mp.getMovieProcess().subscribe(processes => {
+      this.makeEmptyScene(col, processes, name);
+    });
+  }
+  /**
+   * プロジェクト下のシーン一覧を取得する。
+   * @param proj 
+   */
+  getScene(proj: string){
+    let project = this.userDoc.collection<Scene>(proj);
+    return project.valueChanges();
+  }
+    /**
    * プロジェクト内の指定されたシーンを削除する。
    * @param name シーン名称
    */
   deleteScene(proj: string, name: string){
     let project = this.userDoc.collection<Scene>(proj);
     this.searchScene(project, name).then(id => project.doc(id).delete());
-  }
-  getScene(proj: string){
-    let project = this.userDoc.collection<Scene>(proj);
-    return project.valueChanges();
   }
   /**
    * プロジェクト内のシーンを検索し、IDを返却する。
@@ -104,5 +103,22 @@ export class StoreService {
       console.log("シーンの取得中にエラーが発生しました。", err);
       throw new Error;
     });
+  }
+  /**
+   * 初期化されたシーンを作成する。
+   * @param col プロジェクトのコレクション
+   * @param processes 工程のリスト
+   * @param name シーン名称
+   */
+  makeEmptyScene(col: AngularFirestoreCollection<Scene>, processes: MovieProcess[], name: string){
+    col.doc(this.db.createId()).set(
+      processes
+      .map(pro => pro.id)
+      .reduce<Object>((obj, id) => {
+          obj[id] = false;
+          return obj;
+        }, {name: name}
+      )
+    )
   }
 }

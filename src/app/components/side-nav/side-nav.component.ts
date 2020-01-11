@@ -11,6 +11,7 @@ import { MovieProcessService } from '../../services/movie-process.service';
 export class SideNavComponent implements OnInit {
   @Input() user;
   @Output() changeProj = new EventEmitter<string>();
+  @Output() selectProc = new EventEmitter<string>();
   processes: MovieProcess[];
   constructor(private movieProcess:MovieProcessService) { }
 
@@ -20,6 +21,9 @@ export class SideNavComponent implements OnInit {
 
   onChange(key: string){
     this.changeProj.emit(key);
+  }
+  onClick(key: string){
+    this.selectProc.emit(key);
   }
 
 }

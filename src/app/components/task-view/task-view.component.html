@@ -1,0 +1,8 @@
+<p>task-view works!</p>
+<mat-nav-list>
+    <mat-list-item *ngFor="let scene of scenes">
+        {{ scene.name }}
+        {{ selected }}
+        {{ scene[selected] }}
+    </mat-list-item>
+</mat-nav-list>

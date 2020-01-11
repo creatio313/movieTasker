@@ -24,11 +24,13 @@ import { StoreService } from './services/store.service';
 import { MovieProcessService } from './services/movie-process.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
+import { TaskViewComponent } from './components/task-view/task-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SideNavComponent
+    SideNavComponent,
+    TaskViewComponent
   ],
   imports: [
     BrowserModule,

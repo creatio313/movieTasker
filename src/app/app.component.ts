@@ -15,6 +15,7 @@ export class AppComponent {
   
   userID: String = "creatio313";
   currentProject: string = "";
+  selected: string = "";
 
   user: User;
   scenes: Scene[];
@@ -53,5 +54,9 @@ export class AppComponent {
   }
   deleteProject(id: string){
     this.store.deleteProject(id);
+  }
+
+  selectProcess(key: string){
+    this.selected = key;
   }
 }
