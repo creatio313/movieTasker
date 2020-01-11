@@ -13,6 +13,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -42,6 +43,7 @@ import { SideNavComponent } from './components/side-nav/side-nav.component';
     MatInputModule,
     MatCardModule,
     MatSnackBarModule,
+    MatGridListModule,
     AngularFireModule.initializeApp(environment.firebase),//Angularfireのテストのために付加
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     FormsModule//要らないかも

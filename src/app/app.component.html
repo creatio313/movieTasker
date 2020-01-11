@@ -39,14 +39,34 @@
         </mat-form-field>
       </mat-card-content>
     </mat-card>
-    <mat-nav-list>
-      <mat-list-item *ngFor="let project of user?.projects |keyvalue" (click)="deleteProject(project.key)">
-        {{project.value}}
-      </mat-list-item>
-    </mat-nav-list>
-    <mat-form-field class="input">
-      <input matInput placeholder="プロジェクト名称" value="" (keyup.enter)="addProject(newProjectName.value); newProjectName.value = ''" #newProjectName>
-    </mat-form-field>
+    <mat-card class="card">
+      <mat-card-header>
+        <mat-card-title>プロジェクト管理</mat-card-title>
+        <mat-card-subtitle>プロジェクトの追加・削除を行います。</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <h3>プロジェクト削除</h3>
+        <mat-nav-list>
+          <mat-list-item *ngFor="let project of user?.projects |keyvalue" (click)="deleteProject(project.key)">
+            {{project.value}}
+          </mat-list-item>
+        </mat-nav-list>
+        <h3>プロジェクト追加</h3>
+        <mat-form-field class="input">
+          <input matInput placeholder="プロジェクト名称" value="" (keyup.enter)="addProject(newProjectName.value); newProjectName.value = ''" #newProjectName>
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card>]
+    <!--
+    <mat-grid-list cols="2">
+      <mat-grid-tile>
+        <p>first</p>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <p>2nd</p>
+      </mat-grid-tile>
+    </mat-grid-list>
+    -->
   </mat-sidenav-content>
 </mat-sidenav-container>
 <router-outlet></router-outlet>
