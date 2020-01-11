@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Scene } from 'src/app/models/scene';
 
 @Component({
   selector: 'app-task-view',
@@ -6,12 +7,13 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./task-view.component.sass']
 })
 export class TaskViewComponent implements OnInit {
-  @Input() scenes;
+  @Input() scenes: Scene[];
   @Input() selected;
+  todoList: Scene[];
+  doneList: Scene[];
   constructor() { }
 
   ngOnInit() {
-    
   }
 
 }

@@ -1,8 +1,13 @@
 <p>task-view works!</p>
 <mat-nav-list>
-    <mat-list-item *ngFor="let scene of scenes">
-        {{ scene.name }}
-        {{ selected }}
-        {{ scene[selected] }}
+    <h2>未了</h2>
+    <mat-list-item *ngFor="let scene of (scenes | todo:selected:false)">
+        <div *ngIf="scene[selected]==false">
+            {{ scene.name }}
+        </div>
+    </mat-list-item>
+    <h2>完了</h2>
+    <mat-list-item *ngFor="let scene of (scenes | todo:selected:true)">
+            {{ scene.name }}
     </mat-list-item>
 </mat-nav-list>
