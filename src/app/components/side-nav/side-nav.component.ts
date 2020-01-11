@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { MovieProcess } from '../../models/movie-process';
 import { MovieProcessService } from '../../services/movie-process.service';
@@ -11,11 +10,16 @@ import { MovieProcessService } from '../../services/movie-process.service';
 })
 export class SideNavComponent implements OnInit {
   @Input() user;
+  @Output() changeProj = new EventEmitter<string>();
   processes: MovieProcess[];
   constructor(private movieProcess:MovieProcessService) { }
 
   ngOnInit() {
     this.movieProcess.getMovieProcess().subscribe(processes => this.processes = processes);
+  }
+
+  onChange(key: string){
+    this.changeProj.emit(key);
   }
 
 }

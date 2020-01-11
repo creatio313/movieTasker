@@ -26,11 +26,11 @@ export class StoreService {
   getUser(): Observable<User>{
     return this.user;
   }
-  getProject(projectKey: string){
-    this.projectCollection = this.userDoc.collection('TestProject');
+  getProject(proj: string){
+    this.projectCollection = this.userDoc.collection(proj);
   }
-  addScene(name: string){
-    let col = this.userDoc.collection<Scene>('TestProject');
+  addScene(proj: string,name: string){
+    let col = this.userDoc.collection<Scene>(proj);
     name = name.trim();
     if(name == null || name == "")return;
     this.mp.getMovieProcess().subscribe(processes => {
@@ -77,12 +77,12 @@ export class StoreService {
    * プロジェクト内の指定されたシーンを削除する。
    * @param name シーン名称
    */
-  deleteScene(name: string){
-    let project = this.userDoc.collection<Scene>('TestProject');
+  deleteScene(proj: string, name: string){
+    let project = this.userDoc.collection<Scene>(proj);
     this.searchScene(project, name).then(id => project.doc(id).delete());
   }
-  getScene(){
-    let project = this.userDoc.collection<Scene>('TestProject');
+  getScene(proj: string){
+    let project = this.userDoc.collection<Scene>(proj);
     return project.valueChanges();
   }
   /**

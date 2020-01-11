@@ -14,6 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class AppComponent {
   
   userID: String = "creatio313";
+  currentProject: string = "";
 
   user: User;
   scenes: Scene[];
@@ -30,18 +31,22 @@ export class AppComponent {
   }
   ngOnInit(){
     this.store.getUser().subscribe(user => this.user = user);
-    this.store.getScene().subscribe(scenes => this.scenes = scenes.sort((a,b)=> {if(a.name>b.name){return 1}return -1}));
+  }
+
+  setProject(proj: string){
+    this.currentProject = proj;
+    this.store.getScene(this.currentProject).subscribe(scenes => this.scenes = scenes.sort((a,b)=> {if(a.name>b.name){return 1}return -1}));
   }
 
   add(name: string){
     if(!this.scenes.find(scene => scene.name == name)){
-      this.store.addScene(name)
+      this.store.addScene(this.currentProject,name)
     }else{
       this.matSnackBar.open("すでに同名のシーンが存在します。","",{duration: 1500});
     };
   }
   delete(name: string){
-    this.store.deleteScene(name);
+    this.store.deleteScene(this.currentProject,name);
   }
   addProject(name: string){
     this.store.addProject(name);
