@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Scene } from 'src/app/models/scene';
+import { StoreService } from 'src/app/services/store.service';
 
 @Component({
   selector: 'app-task-view',
@@ -9,11 +10,15 @@ import { Scene } from 'src/app/models/scene';
 export class TaskViewComponent implements OnInit {
   @Input() scenes: Scene[];
   @Input() selected;
+  @Input() project: string;
   todoList: Scene[];
   doneList: Scene[];
-  constructor() { }
+  constructor(private store: StoreService) { }
 
   ngOnInit() {
+  }
+  toggleTodo(sceneName: string, val: boolean){
+    this.store.toggleTodo(this.project, sceneName, this.selected, val);
   }
 
 }

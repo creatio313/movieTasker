@@ -121,4 +121,16 @@ export class StoreService {
       )
     )
   }
+  toggleTodo(proj: string, scene: string, col: string, val: boolean){
+    console.log(proj, scene, col, val);
+    let collection = this.userDoc.collection<Scene>(proj);
+    let obj = {};
+    obj[col] = val;
+    this.searchScene(collection, scene).then(
+      id => {
+        console.log(id);
+        collection.doc(id).update(obj);
+      }
+    );
+  }
 }
