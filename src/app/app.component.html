@@ -48,6 +48,7 @@
         <h3>プロジェクト削除</h3>
         <mat-nav-list>
           <mat-list-item *ngFor="let project of user?.projects |keyvalue" (click)="deleteProject(project.key)">
+            <mat-icon color="primary" aria-label="delete">backspace</mat-icon>
             {{project.value}}
           </mat-list-item>
         </mat-nav-list>
