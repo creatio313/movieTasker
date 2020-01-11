@@ -31,7 +31,6 @@ export class StoreService {
   }
   addScene(name: string){
     let col = this.userDoc.collection<Scene>('TestProject');
-
     name = name.trim();
     if(name == null || name == "")return;
     this.mp.getMovieProcess().subscribe(processes => {
@@ -55,10 +54,24 @@ export class StoreService {
     let obj = {};
     let id = this.db.createId();
     obj["projects." + id] = name;
-    this.db.doc('Users/creatio313').update(obj);
+    this.userDoc.update(obj);//要リファクタリング
     this.mp.getMovieProcess().subscribe(processes => {
       this.makeEmptyScene(this.userDoc.collection(id), processes, "シーン１");
     })
+  }
+  /**
+   * コレクションを削除する。
+   * コレクションの削除は時間を要するため、インデックスを削除し、のちにサーバー側で削除する。
+   * @param id インデックスID
+   */
+  deleteProject(id: string){
+    this.userDoc.get().subscribe(
+      user => {
+        let list = user.data().projects;
+        delete list[id]
+        this.userDoc.update({projects: list});
+      }
+    )
   }
   /**
    * プロジェクト内の指定されたシーンを削除する。

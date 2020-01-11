@@ -46,4 +46,7 @@ export class AppComponent {
   addProject(name: string){
     this.store.addProject(name);
   }
+  deleteProject(id: string){
+    this.store.deleteProject(id);
+  }
 }
