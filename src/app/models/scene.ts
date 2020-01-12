@@ -8,4 +8,6 @@ export class Scene {
     record: boolean;
     edit: boolean;
     sound: boolean;
+    date: any;
+    prefecture: string;
 }

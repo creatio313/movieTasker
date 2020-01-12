@@ -23,6 +23,7 @@
         [selected]="selected" 
         [project]="currentProject"
         ></app-task-view>
+      <app-plan-form [scenes]="scenes" [proj]="currentProject"></app-plan-form>
     </div>
     <div *ngIf="selected == ''" >
     <app-main 

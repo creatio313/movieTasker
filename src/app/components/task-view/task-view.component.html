@@ -1,10 +1,12 @@
+<h3>未了</h3>
 <mat-nav-list>
-    <h3>未了</h3>
-    <mat-list-item *ngFor="let scene of (scenes | todo:selected:false)" (click)="toggleTodo(scene.name, true)">
-            {{ scene.name }}
-    </mat-list-item>
-    <h3>完了</h3>
-    <mat-list-item *ngFor="let scene of (scenes | todo:selected:true)" (click)="toggleTodo(scene.name, false)">
-            {{ scene.name }}
-    </mat-list-item>
+        <mat-list-item *ngFor="let scene of (scenes | todo:selected:false)" (click)="toggleTodo(scene.name, true)">
+                {{ scene.name }}
+        </mat-list-item>
+</mat-nav-list>
+<h3>完了</h3>
+<mat-nav-list>
+        <mat-list-item *ngFor="let scene of (scenes | todo:selected:true)" (click)="toggleTodo(scene.name, false)">
+                {{ scene.name }}
+        </mat-list-item>
 </mat-nav-list>

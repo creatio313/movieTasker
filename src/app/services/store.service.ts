@@ -131,7 +131,7 @@ export class StoreService {
       .reduce<Object>((obj, id) => {
           obj[id] = false;
           return obj;
-        }, {name: name}
+        }, {name: name,date: new Date(),prefecture: "JP-13"}
       )
     )
   }
@@ -151,5 +151,18 @@ export class StoreService {
         collection.doc(id).update(obj);
       }
     );
+  }
+  registPlan(proj: string, scene: Scene){
+    let col = this.userDoc.collection<Scene>(proj);
+    this.searchScene(col, scene.name).then(
+      id => {
+        col.doc(id).update(
+          {
+            date: scene.date,
+            prefecture: scene.prefecture
+          }
+        )
+      }
+    )
   }
 }

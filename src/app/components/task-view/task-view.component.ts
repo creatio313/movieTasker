@@ -13,12 +13,14 @@ export class TaskViewComponent implements OnInit {
   @Input() project: string;
   todoList: Scene[];
   doneList: Scene[];
-  constructor(private store: StoreService) { }
+
+  constructor(
+    private store: StoreService
+  ) { }
 
   ngOnInit() {
   }
   toggleTodo(sceneName: string, val: boolean){
     this.store.toggleTodo(this.project, sceneName, this.selected, val);
   }
-
 }

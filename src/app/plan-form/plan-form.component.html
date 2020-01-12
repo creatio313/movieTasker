@@ -1,0 +1,45 @@
+<h3>今後の撮影予定</h3>
+<table mat-table [dataSource]='scenes' class="mat-elevation-z8">
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef> 撮影日 </th>
+    <td mat-cell *matCellDef="let element"> {{ element.date | toDate | date }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="prefecture">
+    <th mat-header-cell *matHeaderCellDef> 撮影地 </th>
+    <td mat-cell *matCellDef="let element"> {{ prefs[element.prefecture] }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> シーン名称 </th>
+    <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<h3>撮影日の登録</h3>
+<form #scheduleForm="ngForm" (ngSubmit)="registPlan()">
+    <mat-form-field>
+    <mat-label>シーン名称</mat-label>
+    <mat-select (selectionChange)="onChange($event.value)" required>
+        <mat-option *ngFor="let scene of scenes" [value]="scene">
+            {{scene.name}}
+        </mat-option>
+    </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="撮影日" name="date" [(ngModel)]="selectedScene.date" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker (select)="setDate($event.target.value)"></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+            <mat-label>撮影地</mat-label>
+            <mat-select name="prefecture" [(ngModel)]="selectedScene.prefecture" required>
+                    <mat-option *ngFor="let pref of prefs | keyvalue" [value]="pref.key">
+                            {{pref.value}}
+                    </mat-option>
+            </mat-select>
+    </mat-form-field>
+    <button type="submit" mat-raised-button [disabled]="scheduleForm.invalid">登録</button>
+</form>
