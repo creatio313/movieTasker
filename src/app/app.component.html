@@ -16,14 +16,18 @@
       {{ title }}
     </a></h1>
     
-    <div *ngIf="currentProject != '' && selected != ''" >
-      <h2>{{selectedJP}}</h2>
-      <app-task-view 
-        [scenes]="scenes" 
-        [selected]="selected" 
-        [project]="currentProject"
-        ></app-task-view>
+    <div *ngIf="currentProject != '' && selected != ''">
+      <div *ngIf="selected!= 'registPlan'">
+        <h2>{{selectedJP}}</h2>
+        <app-task-view 
+          [scenes]="scenes" 
+          [selected]="selected" 
+          [project]="currentProject"
+          ></app-task-view>
+      </div>
+      <div *ngIf="selected == 'registPlan'">
       <app-plan-form [scenes]="scenes" [proj]="currentProject"></app-plan-form>
+      </div>
     </div>
     <div *ngIf="selected == ''" >
     <app-main 

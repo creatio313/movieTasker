@@ -56,7 +56,9 @@ export class AppComponent {
 
   selectProcess(key: string){
     this.selected = key;
-    this.selectedJP = this.processes.filter(data => data.id == key)[0].name;
+
+    //暫定
+    if(key != 'registPlan')this.selectedJP = this.processes.filter(data => data.id == key)[0].name;
   }
   changeSceneName(arr: string[]){
     let oldNm = arr[0];

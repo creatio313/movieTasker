@@ -29,7 +29,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { TodoPipe } from './pipe/todo.pipe';
 import { MainComponent } from './components/main/main.component';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatDividerModule } from '@angular/material/divider';
+
 import { PlanFormComponent } from './plan-form/plan-form.component';
+
 import { ToDatePipe } from './pipe/to-date.pipe';
 import { CommingPlanPipe } from './pipe/comming-plan.pipe';
 
@@ -61,6 +64,7 @@ import { CommingPlanPipe } from './pipe/comming-plan.pipe';
     MatDatepickerModule,
     MatNativeDateModule,
     MatTableModule,
+    MatDividerModule,
     AngularFireModule.initializeApp(environment.firebase),//Angularfireのテストのために付加
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     FormsModule

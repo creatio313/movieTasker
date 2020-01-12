@@ -9,3 +9,8 @@
 <mat-nav-list>
   <mat-list-item class="processbutton" *ngFor="let process of processes" (click)="onClick(process.id)">{{ process.name }}</mat-list-item>
 </mat-nav-list>
+<mat-divider></mat-divider>
+
+<mat-nav-list>
+  <mat-list-item class="processbutton" (click)="onClick('registPlan')">撮影日の登録</mat-list-item>
+</mat-nav-list>
