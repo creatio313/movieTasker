@@ -1,0 +1,38 @@
+<mat-card class="card">
+    <mat-card-header>
+    <mat-card-title>プロジェクト管理</mat-card-title>
+    <mat-card-subtitle>プロジェクトの追加・削除を行います。</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+    <h3>プロジェクト削除</h3>
+    <mat-nav-list>
+        <mat-list-item *ngFor="let project of user?.projects |keyvalue" (click)="deleteP(project.key)">
+        <mat-icon color="primary" aria-label="delete">backspace</mat-icon>
+        {{project.value}}
+        </mat-list-item>
+    </mat-nav-list>
+    <h3>プロジェクト追加</h3>
+    <mat-form-field class="input">
+        <input matInput placeholder="プロジェクト名称" value="" (keyup.enter)="addP(newProjectName.value); newProjectName.value = ''" #newProjectName>
+    </mat-form-field>
+    </mat-card-content>
+</mat-card>
+<mat-card class="card">
+    <mat-card-header>
+    <mat-card-title>シーン管理</mat-card-title>
+    <mat-card-subtitle>シーンの変更・追加・削除を行います。</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+    <h3>シーン名変更・削除</h3>
+    <mat-nav-list>
+        <mat-list-item *ngFor="let scene of scenes">
+        <mat-icon color="primary" aria-label="delete" (click)="deleteS(scene.name)">backspace</mat-icon>
+        <input matInput value="{{scene.name}}" (keyup.enter)="changeS(scene.name, $event.target.value);">
+        </mat-list-item>
+    </mat-nav-list>
+    <h3>シーン追加</h3>
+    <mat-form-field class="input">
+        <input matInput placeholder="シーン名称" value="" (keyup.enter)="addS(newSceneName.value); newSceneName.value = ''" #newSceneName>
+    </mat-form-field>
+    </mat-card-content>
+</mat-card>

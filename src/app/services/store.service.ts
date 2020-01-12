@@ -23,13 +23,23 @@ export class StoreService {
     this.userDoc = db.doc<User>('Users/creatio313');
     this.user = this.userDoc.valueChanges();
   }
+  /**
+   * ユーザーを返却する。
+   */
   getUser(): Observable<User>{
     return this.user;
   }
+  /**
+   * 指定されたプロジェクトを返却する。
+   * @param proj プロジェクト名称
+   */
   getProject(proj: string){
     this.projectCollection = this.userDoc.collection(proj);
   }
-
+  /**
+   * プロジェクトを追加し、初期値のシーンを追加する。
+   * @param name プロジェクト名称
+   */
   addProject(name: string){
     name = name.trim();
     if(name == null || name == "")return;
@@ -125,14 +135,19 @@ export class StoreService {
       )
     )
   }
+  /**
+   * シーンの工程の未了・完了を切り替える。
+   * @param proj プロジェクトのコレクション
+   * @param scene シーン名称
+   * @param col 項目名
+   * @param val 真偽値
+   */
   toggleTodo(proj: string, scene: string, col: string, val: boolean){
-    console.log(proj, scene, col, val);
     let collection = this.userDoc.collection<Scene>(proj);
     let obj = {};
     obj[col] = val;
     this.searchScene(collection, scene).then(
       id => {
-        console.log(id);
         collection.doc(id).update(obj);
       }
     );

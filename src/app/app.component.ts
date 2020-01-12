@@ -4,7 +4,8 @@ import { User } from './models/user';
 import { Scene } from './models/scene';
 import { StoreService } from './services/store.service';
 
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MovieProcess } from './models/movie-process';
+import { MovieProcessService } from './services/movie-process.service';
 
 @Component({
   selector: 'app-root',
@@ -16,22 +17,23 @@ export class AppComponent {
   userID: String = "creatio313";
   currentProject: string = "";
   selected: string = "";
+  selectedJP: string = "";
 
   user: User;
   scenes: Scene[];
-  data: Number = 20;
   
+  processes: MovieProcess[];
 
   title = 'MovieTasker';
 
   constructor(
     private store:StoreService,
-    
-    private matSnackBar:MatSnackBar
-    ) {
+    private movieProcess:MovieProcessService
+  ) {
   }
   ngOnInit(){
     this.store.getUser().subscribe(user => this.user = user);
+    this.movieProcess.getMovieProcess().subscribe(processes => this.processes = processes);
   }
 
   setProject(proj: string){
@@ -40,11 +42,7 @@ export class AppComponent {
   }
 
   add(name: string){
-    if(!this.scenes.find(scene => scene.name == name)){
-      this.store.addScene(this.currentProject,name)
-    }else{
-      this.matSnackBar.open("すでに同名のシーンが存在します。","",{duration: 1500});
-    };
+    this.store.addScene(this.currentProject,name)
   }
   delete(name: string){
     this.store.deleteScene(this.currentProject,name);
@@ -58,9 +56,11 @@ export class AppComponent {
 
   selectProcess(key: string){
     this.selected = key;
+    this.selectedJP = this.processes.filter(data => data.id == key)[0].name;
   }
-  changeSceneName(oldNm: string, newNm: string){
-    console.log(oldNm,newNm);
+  changeSceneName(arr: string[]){
+    let oldNm = arr[0];
+    let newNm = arr[1];
     this.store.changeScene(this.currentProject, oldNm, newNm);
   }
 }

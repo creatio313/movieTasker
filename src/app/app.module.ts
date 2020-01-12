@@ -25,13 +25,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { TaskViewComponent } from './components/task-view/task-view.component';
 import { TodoPipe } from './pipe/todo.pipe';
+import { MainComponent } from './components/main/main.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SideNavComponent,
     TaskViewComponent,
-    TodoPipe
+    TodoPipe,
+    MainComponent
   ],
   imports: [
     BrowserModule,
