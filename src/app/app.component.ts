@@ -59,4 +59,8 @@ export class AppComponent {
   selectProcess(key: string){
     this.selected = key;
   }
+  changeSceneName(oldNm: string, newNm: string){
+    console.log(oldNm,newNm);
+    this.store.changeScene(this.currentProject, oldNm, newNm);
+  }
 }

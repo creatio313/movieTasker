@@ -76,6 +76,10 @@ export class StoreService {
     let project = this.userDoc.collection<Scene>(proj);
     return project.valueChanges();
   }
+  changeScene(proj: string, oldNm: string, newNm: string){
+    let col = this.userDoc.collection<Scene>(proj);
+    this.searchScene(col, oldNm).then(id => col.doc(id).update({name: newNm}));
+  }
     /**
    * プロジェクト内の指定されたシーンを削除する。
    * @param name シーン名称

@@ -1,3 +1,5 @@
+$cardspace: 20px
+
 .sidenav
     position: absolute
     top: 0
@@ -9,9 +11,21 @@
 mat-sidenav, mat-sidenav-content
     padding: 16px
 
+h1
+    margin: 2em
+
+mat-sidenav-content
+    button
+        float: left
 mat-card
-    max-width: 500px
+    float: left
+    //width: 45%
+    min-width: 300px
+    margin: $cardspace/2
     mat-card-content
-        padding-left: 20px
-        mat-icon
-            padding-right: 5px
+        padding-top:$cardspace
+        padding-left: $cardspace
+        mat-nav-list
+            mat-list-item
+                mat-icon
+                    padding-right: 5px
