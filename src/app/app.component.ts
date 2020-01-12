@@ -63,4 +63,7 @@ export class AppComponent {
     let newNm = arr[1];
     this.store.changeScene(this.currentProject, oldNm, newNm);
   }
+  clear(){
+    this.selected="";
+  }
 }
